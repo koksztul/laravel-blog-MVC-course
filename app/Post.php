@@ -40,14 +40,18 @@ class Post extends Model
             return $query;
         }
 
-    if (!$user) {
-        $query->where('premium', '<>', 1);
-    }
+        if (!$user) {
+            $query->where('premium', '<>', 1);
+        }
 
         return $query->where('published', 1);
     }
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
