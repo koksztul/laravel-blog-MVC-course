@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Post extends Model
 {
     protected $fillable = ['user_id', 'title', 'type', 'date', 'content', 'premium', 'published', 'image'];
-    protected $dates = ['date'];//zamienione na instancje klasy Carbon
+    protected $dates = ['date'];
 
     public function setTitleAttribute($value)
     {
@@ -53,5 +53,9 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }

@@ -23,7 +23,11 @@
         </div>
         <div class="form-fieldset">
             <label class="form-label">Date:</label>
-            <input class="form-field" type="date" name="date">
+            <input class="form-field {{ $errors->has('date') ? ' is-invalid' : '' }}" type="date" name="date">
+        </div>
+        <div class="form-fieldset">
+            <label class="form-label">Tags:</label>
+            <input class="form-field" type="text" name="tags">
         </div>
         <div class="form-fieldset">
             <label class="form-label">Published:</label>

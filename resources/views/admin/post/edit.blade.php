@@ -14,7 +14,7 @@
             <input class="form-field" type="text" name="title" placeholder="Title" value="{{ $post->title }}">
         </div>
         <div class="form-fieldset">
-            <div class="form-select">
+            <div class="form-select" {{ $errors->has('type') }}>
                 <select name="type"> 
                     <option value="text"{{ $post->type == 'text' ? ' selected' : ''}} selected>Type: Text</option>
                     <option value="photo" {{ $post->type == 'photo' ? ' selected' : ''}}>Type: Photo</option>     
@@ -23,7 +23,11 @@
         </div>
         <div class="form-fieldset">
             <label class="form-label">Date:</label>
-            <input class="form-field" type="date" name="date" value="{{ $post->date->format('Y-m-d')}}">
+            <input class="form-field {{ $errors->has('date') }}" type="date" name="date" value="{{ $post->date->format('Y-m-d')}}">
+        </div>
+        <div class="form-fieldset">
+            <label class="form-label">Tags:</label>
+            <input class="form-field {{ $errors->has('tags') }}" type="text" name="tags" value="{{ $post->tags->implode('name', ' ') }}">
         </div>
         <div class="form-fieldset">
             <label class="form-label">Published:</label>

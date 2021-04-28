@@ -20,15 +20,16 @@
         </div>
     </div>
     <div class="meta">
+        @if($post->tags->count() > 0)
         <ul class="tags">
             <li><i class="fa fa-tags"></i></li>
+            @foreach ($post->tags as $tag)
             <li>
-                <a href="#">format</a>
+                <a href="{{ route('posts.tags', $tag->slug) }}">{{ $tag->name }}</a>
             </li>
-            <li>
-                <a href="#">typography</a>
-            </li>
+            @endforeach
         </ul>
+        @endif
         <div class="flex flex-sb">
             <p class="date"><i class="fa fa-clock-o"> </i> {{ $post->date->diffForHumans() }} <i class="fa fa-user"> by {{ $post->author->name }}</i></p>
             @can('manage-posts')
@@ -53,15 +54,16 @@
         </div>
     </figure>
     <div class="meta">
+        @if($post->tags->count() > 0)
         <ul class="tags">
             <li><i class="fa fa-tags"></i></li>
+            @foreach ($post->tags as $tag)
             <li>
-                <a href="#">photo</a>
+                <a href="{{ route('posts.tags', $tag->slug) }}">{{ $tag->name }}</a>
             </li>
-            <li>
-                <a href="#">dog</a>
-            </li>
+            @endforeach
         </ul>
+        @endif
         <div class="flex flex-sb">
             <p class="date"><i class="fa fa-clock-o"> </i> {{ $post->date->diffForHumans() }} <i class="fa fa-user"> by {{ $post->author->name }}</i></p>
             @can('manage-posts')
@@ -90,15 +92,16 @@
         </div>
     </div>
     <div class="meta">
+        @if($post->tags->count() > 0)
         <ul class="tags">
             <li><i class="fa fa-tags"></i></li>
+            @foreach ($post->tags as $tag)
             <li>
-                <a href="#">format</a>
+                <a href="{{ route('posts.tags', $tag->slug) }}">{{ $tag->name }}</a>
             </li>
-            <li>
-                <a href="#">typography</a>
-            </li>
+            @endforeach
         </ul>
+        @endif
         <div class="flex flex-sb">
             <p class="date"><i class="fa fa-clock-o"> </i> {{ $post->date->diffForHumans() }} <i class="fa fa-user"> by {{ $post->author->name }}</i></p>
             @can('manage-posts')

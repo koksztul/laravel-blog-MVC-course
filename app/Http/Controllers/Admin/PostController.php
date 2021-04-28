@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Services\TagsParsingService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -23,6 +24,7 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'type' => 'required|in:text,photo',
             'date' => 'nullable|date',
+            'tags' => 'nullable',
             'image' => 'nullable|image|max:1024',
             'content' => 'nullable',
             'published' => 'boolean',
@@ -58,10 +60,15 @@ class PostController extends Controller
             $path = $request->file('image')->store('photos');
             $data['image'] = $path;
         }
+
         $data['user_id'] = $request->user()->id;
 
         $post = Post::create($data);
 
+        if (isset($data['tags'])) {
+            $tags = TagsParsingService::parse($data['tags']);
+            $post->tags()->sync($tags);
+        }
         session()->flash('message', 'Post has been added!');
 
         return redirect(route('posts.single', $post->slug));
@@ -90,12 +97,21 @@ class PostController extends Controller
     {
         $post = Post::FindOrFail($id);
         $oldImage = $post->image;
+
         $data = $this->validator($request->all());
+
         if (isset($data['image'])) {
             $path = $request->file('image')->store('photos');
             $data['image'] = $path;
         }
+
         $post->update($data);
+
+        if (isset($data['tags'])) {
+            $tags = TagsParsingService::parse($data['tags']);
+            $post->tags()->sync($tags);
+        }
+
         if (isset($data['image'])) {
             Storage::delete($oldImage);
         }

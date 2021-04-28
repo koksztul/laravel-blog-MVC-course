@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PostController::class, 'index']);
 Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.single');
+Route::get('/tag/{slug}', [TagController::class, 'index'])->name('posts.tags');
+
 
 Route::get('/about-me', function () {
     return view('pages.about');
@@ -36,8 +39,10 @@ Route::get('/email/verify/{id}', 'Auth\VerificationController@verify')->name('ve
 Route::get('/email/verify', 'Auth\VerificationController@show')->name('verification.notice');
 Route::get('/email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
-Route::get('admin/post/create', 'Admin\PostController@create')->name('admin.post.create');
-Route::post('admin/post/create', 'Admin\PostController@store');
-Route::get('admin/post/{id}', 'Admin\PostController@edit')->name('admin.post.edit');
-Route::put('admin/post/{id}', 'Admin\PostController@update');
-Route::delete('admin/post/{id}', 'Admin\PostController@destroy')->name('admin.post.delete');
+Route::get('/admin/post/create', 'Admin\PostController@create')->name('admin.post.create');
+Route::post('/admin/post/create', 'Admin\PostController@store');
+Route::get('/admin/post/{id}', 'Admin\PostController@edit')->name('admin.post.edit');
+Route::put('/admin/post/{id}', 'Admin\PostController@update');
+Route::delete('/admin/post/{id}', 'Admin\PostController@destroy')->name('admin.post.delete');
+
+Route::post('/comment/create', 'CommentController@store')->name('comment.create');
