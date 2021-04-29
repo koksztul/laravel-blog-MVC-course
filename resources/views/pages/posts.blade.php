@@ -81,7 +81,7 @@
             <i class="postPremium fa fa-star"></i>
             @endif
             <h2 class="postTitle">
-                <a href="#">{{ $post->title }}.</a>
+                <a href="{{ route('posts.single', $post->slug ) }}">{{ $post->title }}.</a>
             </h2>
             <div class="rte">
                 {{ $post->content }}

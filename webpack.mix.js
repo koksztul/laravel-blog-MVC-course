@@ -10,6 +10,18 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.disableNotifications();
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix.browserSync({
+    port: 3002,
+    proxy: "localhost:8000",
+    open: false,
+    notify: false,
+});
+
+if (!mix.inProduction()) {
+    mix.webpackConfig({ devtool: "inline-source-map" }).sourceMaps();
+}
+
+
+mix.sass("resources/sass/main.scss", "public/css").version();
