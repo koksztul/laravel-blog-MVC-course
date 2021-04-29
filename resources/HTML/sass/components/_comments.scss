@@ -1,4 +1,10 @@
 // *--------- COMMENTS ---------*
+.comments {
+    .formatPhoto + & {
+        margin-top: 50px;
+    }
+}
+
 .comment {
     padding-bottom: 25px;
     border-bottom: 3px $generalBorderColor solid;

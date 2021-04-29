@@ -21,7 +21,7 @@
 
 .form-label {
     display: inline-block;
-    min-width: 60px;
+    min-width: 70px;
     margin-right: 20px;
 
     font: 14px $mainFont;
@@ -79,4 +79,10 @@
             display: none;
         }
     }
+}
+
+.form-image {
+    width: 400px;
+    max-width: 100%;
+    margin-bottom: 15px;
 }

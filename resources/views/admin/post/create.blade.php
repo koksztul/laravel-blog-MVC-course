@@ -41,8 +41,8 @@
             <label class="form-label">Image:</label>
             <input type="file" name="image">
         </div>
-        <div class="form-fieldset is-wide">
-            <textarea class="form-textarea" name="content" placeholder="Content"></textarea>
+        <div class="form-fieldset is-full">
+            <textarea id="wysiwyg" class="form-textarea" name="content" placeholder="Content"></textarea>
         </div>
         <button class="button">Add post</button>
     </form>

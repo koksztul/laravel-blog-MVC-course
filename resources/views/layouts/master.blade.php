@@ -6,7 +6,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <link rel="stylesheet" href="{{asset('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')}}" media="none" onload="this.media='all'">
-        <link rel="stylesheet" href="{{asset('css/main.css')}}">
+        <link rel="stylesheet" href="{{ mix('/css/main.css')}} ">
         <title>@yield('title', 'Home')</title>
     </head>
     <body class="page-index">
@@ -58,18 +58,22 @@
                 </div>
             </footer>
         </div>
-@auth
-<form id="logout-form" method="POST" action="{{ route('logout') }}">
-    @csrf
-</form>
-<script>
-    document.querySelector("a[href='#logout']").addEventListener("click", function(e) {
-        e.preventDefault();
 
-        document.querySelector("#logout-form").submit();
-    }, false);
-</script>
-@endauth
+    @auth
+    <form id="logout-form" method="POST" action="{{ route('logout') }}">
+        @csrf
+    </form>
+
+    <script>
+        document.querySelector("a[href='#logout']").addEventListener("click", function(e) {
+            e.preventDefault();
+
+            document.querySelector("#logout-form").submit();
+        }, false);
+    </script>
+    @endauth
+
+<script src="{{ mix('/js/main.js') }}"></script>
+
 </body>
 </html>
-

@@ -717,6 +717,10 @@ body {
   background: #ff3b62;
 }
 
+.formatPhoto + .comments {
+    margin-top: 50px;
+}
+
 .comment {
   padding-bottom: 25px;
   border-bottom: 3px #ecf0f1 solid;
@@ -775,7 +779,7 @@ body {
 
 .form-label {
   display: inline-block;
-  min-width: 60px;
+  min-width: 70px;
   margin-right: 20px;
   font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #757575;
@@ -833,6 +837,12 @@ body {
   display: none;
 }
 
+.form-image {
+    width: 400px;
+    max-width: 100%;
+    margin-bottom: 15px;
+}
+
 @-webkit-keyframes fadeOut {
   0% {
     opacity: 1;
@@ -876,6 +886,7 @@ body {
           animation-delay: 4s;
   font-size: 14px;
   font-weight: bold;
+  line-height: 1.3;
   text-align: center;
   color: #14af13;
 }

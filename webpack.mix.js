@@ -23,5 +23,5 @@ if (!mix.inProduction()) {
     mix.webpackConfig({ devtool: "inline-source-map" }).sourceMaps();
 }
 
-
+mix.js("resources/js/main.js", "public/js").version();
 mix.sass("resources/sass/main.scss", "public/css").version();
