@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,17 +12,24 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/mail', function () {
+//     $user = App\User::first();
 
-Route::get('/', [PostController::class, 'index']);
-Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.single');
-Route::get('/tag/{slug}', [TagController::class, 'index'])->name('posts.tags');
+//     return new App\Mail\UserRegistered($user);
+// });
 
+
+Route::get('/', [App\Http\Controllers\PostController::class, 'index']);
+Route::get('/posts/{slug}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.single');
+Route::get('/tag/{slug}', [App\Http\Controllers\TagController::class, 'index'])->name('posts.tags');
+Route::get('/contact', 'ContactController@show')->name('contact');
+Route::post('/contact', 'ContactController@send');
 
 Route::get('/about-me', function () {
     return view('pages.about');
 })->name('about');
 
-Auth::routes(['verify' => true]);
+//Auth::routes(['verify' => true]);
 
 Route::get('/account/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('/account/register', 'Auth\RegisterController@register');
@@ -46,3 +51,8 @@ Route::put('/admin/post/{id}', 'Admin\PostController@update');
 Route::delete('/admin/post/{id}', 'Admin\PostController@destroy')->name('admin.post.delete');
 
 Route::post('/comment/create', 'CommentController@store')->name('comment.create');
+
+Route::get('/search/', 'SearchController@search')->name('search');
+
+// In routes/web.php
+//Route::feeds();

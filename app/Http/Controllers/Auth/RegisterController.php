@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\UserRegistered;
 
 class RegisterController extends Controller
 {
@@ -82,5 +85,7 @@ class RegisterController extends Controller
     public function registered(Request $request, $user)
     {
         session()->flash('message', "Hi {$user->name}, you've been registered and logged in!");
+
+        Mail::to($user->email)->send(new UserRegistered($user));
     }
 }
