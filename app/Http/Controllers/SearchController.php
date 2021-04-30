@@ -7,14 +7,16 @@ use App\Post;
 
 class SearchController extends Controller
 {
-    public function search(Request $request)
+    public function index(Request $request)
     {
-        $search = $request->input('search');
+        $q = $request->input('q');
 
-        $posts = Post::query()
-            ->where('title', 'LIKE', '%' . $search . '%')
-            ->orWhere('content', 'LIKE', '%' . $search . '%')
+        $posts = Post::published()
+            ->where('title', 'LIKE', '%' . $q . '%')
+            ->orWhere('content', 'LIKE', '%' . $q . '%')
             ->paginate(3);
+
+        $posts->appends(['q' => $q]);
 
         return view('pages.posts', compact('posts'));
     }

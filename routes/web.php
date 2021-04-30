@@ -52,7 +52,7 @@ Route::delete('/admin/post/{id}', 'Admin\PostController@destroy')->name('admin.p
 
 Route::post('/comment/create', 'CommentController@store')->name('comment.create');
 
-Route::get('/search/', 'SearchController@search')->name('search');
+Route::get('/search', 'SearchController@index')->name('search');
 
 // In routes/web.php
 //Route::feeds();

@@ -32,7 +32,7 @@
                     </nav>
                     <form method="GET" action="{{ route('search') }}" class="search">
                         <div class="form-fieldset">
-                            <input type="text" name="search" class="form-field" placeholder="Szukaj...">
+                            <input type="text" name="q" class="form-field" placeholder="Szukaj..." value="{{ request()->get('q') }}">
                         </div>
                     </form>
                 </div>
